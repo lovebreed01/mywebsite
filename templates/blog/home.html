@@ -1,0 +1,118 @@
+{% extends 'blog/base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block title %} Freeloaded | latest news update | latest and trending songs {% endblock title %}
+
+{% block content %}
+
+<div class="allcontainer">
+    <main>
+        <div class="slide-container">
+            <div class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        {% for post  in top_posts %}
+                        <li class="splide__slide">
+                            <div class="story" >
+                                <span class="time" ><i class="fa fa-clock "></i>{{post.created | naturaltime}}</span>
+                                
+                                <img src="{{post.image.url}}" alt="">
+                                <div class="text">
+                                    <span class="body">
+                                        {{post.title}}
+                                    </span>
+                                    <br>
+                                    <span class="author">
+                                        - {{post.author}}
+                                    </span>
+                                </div>
+                                
+                            </div>
+                            
+                        </li>
+                        {% endfor %}
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div  class="trending-posts">
+            <h2 class="heading">Trending Posts</h2>
+            <div class="posts">
+                {% for post in trending_posts %}
+                <a href="{% url 'detail' post.slug %}" 
+                    class="post">
+                    <img src="{{post.image.url}}"  alt="{{post.title}}">
+                    <p class="title" >{{post.title}}</p>
+                </a>
+                {% endfor %} 
+            </div>
+            <a href="{% url 'trending' %}" class="more"> 
+                    <button>See More Trending<i class="fa fa-arrow-right"></i> </button> 
+                </a>
+        </div>
+        <div class="latest">
+            <h3 class="heading">Latest Posts</h3>
+            <div class="posts">
+                {% for  post in news_posts %}
+                <a class="post" href="{% url 'detail' post.slug %}">
+                    <span class="category">{{post.category}}
+                    </span>
+                    <img src="{{post.image.url}}"  class="" alt="">
+                    <p>
+                        {{post.title | safe | slice:50 }}
+                    </p>
+                </a>
+                {% endfor %}
+            </div>
+                <a href="{% url 'news' %}" class="more"> <button>More News<i class="fa fa-arrow-right"></i> </button> 
+                </a>
+        </div>
+
+        <div class="latest">
+            <h3 class="heading">Trending Songs</h3>
+            <div class="posts">
+                {% for  music in music_posts %}
+                <a href="{% url 'music' music.slug %}" class="post">
+                    <span class="category">{{music.category}}
+                    </span>
+                    <img src="{{music.image.url}}"  class="" alt="">
+                    <p>
+                        {{music.title | safe | slice:50 }}
+                    </p> 
+                
+                </a>
+                {% endfor %}
+                <a href="{% url 'songs' %}" class="more"> <button>More Songs<i class="fa fa-arrow-right"></i> </button> 
+                </a>
+            </div>
+        </div>
+
+    </main>
+    
+    <aside>
+        <h2>Get latest updates on your Email</h2>
+        <form action="" method="post">
+            <input type="email">
+            <button type="submit">Submit</button>
+        </form>
+        <div class="top songs">
+            <h2>Top songs of the week</h2>
+        </div>
+        <div class="">
+            <h2>Trending Skits</h2>
+            <p>Coming soon</p>
+        </div>
+        <div class="">
+            <h2>Videos of the week</h2>
+            <p>Coming soon </p>
+        </div>
+    </aside>
+</div>
+
+{% endblock content %}
+
+

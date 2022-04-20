@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static '/blog/styles.css' %}">
+    <link rel="stylesheet" href="{% static '/splide-3.6.12/dist/css/splide.min.css' %}">
+    <link rel="stylesheet" href="{% static '/splide-3.6.12/dist/css/splide-core.min.css' %}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+	<title> {% block title %}{% endblock title %}</title>
+</head>
+<body class="">
+	{% if messages %}
+		{% for message in messages %}
+			{{message}}
+		{% endfor %}
+	{% endif %}
+	 <nav>
+         <div class="brand">
+			Freeloaded.com
+         </div>
+		 <div class="links">
+			 <ul>
+				 <li><a href="{% url 'news' %}">News</a></li>
+				<li><a href="{% url 'songs' %}">Music</a></li>
+				<li><a href="{% url 'trending' %}">Trending</a></li>
+			 </ul>
+		 </div>
+     </nav>
+	{% block content %}
+
+	{% endblock content %}
+    <script src="{% static '/splide-3.6.12/dist/js/splide.min.js'%}"></script>
+    
+	<script src="{% static 'blog/scripts.js' %}"></script>
+	{% block scripts %}
+	
+	{% endblock scripts %}
+</body>
+</html>
+

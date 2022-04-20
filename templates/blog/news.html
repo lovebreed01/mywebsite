@@ -1,0 +1,34 @@
+
+{% extends 'blog/base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %}
+    Latest and trending news | politics | entertainment | gists and more
+{% endblock title %}
+
+{% block content %}
+
+<div class="allcontainer">
+    <main>
+        
+        <section  class="trending-posts">
+            <h2 class="heading">Top News</h2>
+            <div class="posts">
+                {% for post in news %}
+                <a href="{% url 'detail' post.slug %}" class="post">
+                    <img src="{{post.image.url}}"  alt="{{post.title}}">
+                    <p class="title" >{{post.title}}</p>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="#" class="more"> 
+            <button>More<i class="fa fa-arrow-right"></i> </button> 
+            </a>
+        </section>
+        
+    </main>
+</div>
+
+{% endblock content %}
+
+

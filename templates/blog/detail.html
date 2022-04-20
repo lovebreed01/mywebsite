@@ -1,0 +1,104 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Freeloaded | {{post.title}} | latest | trending
+{% endblock title %}
+
+
+{% block content %}
+    {% if user.is_admin %}
+    <a href="{% url 'edit' post.slug %}">Edit</a>
+    <a href="{% url 'delete' post.slug %}">delete</a>
+    {% endif %}
+    
+
+    <section class="detail">
+        <div class="heading">
+            <h1 class="title">{{post.title | upper}}</h1>
+            <div class="other">
+                <p class="other-details">
+                    Posted by 
+                    <span class="creator">{{post.author}}</span> on
+                    <span class="date">{{post.created.date}}</span>
+                </p>
+                <div class="share-buttons">
+                    <a class="facebook-share" href="" target="_blank" rel="noopener">
+                        Share on Facebook
+                     </a>
+                     <a class="whatsapp-share" href="">
+                        Share on Whatsapp
+                    </a>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="body">
+            <img src="{{post.image.url}}" alt="{{post.title}}">
+            <article class="content">
+                {{post.body | safe}}
+            </article>
+        </div>
+        
+        <section  class="trending-posts">
+            <h3 class="heading">Related Posts</h3>
+            <div class="posts">
+                {% for post in related %}
+                <a href="{% url 'detail' post.slug %}" class="post">
+                    <img src="{{post.image.url}}"  alt="{{post.title}}">
+                    <p class="title" >{{post.title}}</p>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="#" class="more"> 
+            <button>More<i class="fa fa-arrow-right"></i> </button> 
+            </a>
+        </section>
+        
+        <div class="comment-section">
+            <h3 class="comment-title">Comment Below 👇 </h3>
+             <form action="" method="post">
+                {% csrf_token %}
+                {% for field in commentform %}
+                    {{field}}
+                {% endfor %}
+                <button type="submit">Submit Comment</button>
+            </form>
+
+            {% if comments %}
+            <div class="comments">
+                {% for comment in comments %}
+                <div class="comment">
+                    <span class="author">
+                        <b>{{comment.author}}</b>
+                          commented on {{comment.created_on.date}} at {{comment.created_on.time}}
+                    </span>
+                   
+                    <p class="body"> {{comment.body}} </p>
+                </div>
+            {% endfor %}
+            {% else %}
+            <p class="no-comment">No comments yet</p>
+            {%  endif %}
+    </div>
+     
+        </div>
+    </section>
+    {% block scripts%}
+        <script>
+        window.onload = function(){
+            const fbBtn = document.querySelector('.facebook-share')
+            const WhatsappShare = document.querySelector('.whatsapp-share')
+            const InstaShare = document.querySelector('.insta-share')
+            fbBtn.setAttribute('href', `https://www.facebook.com/sharer/sharer.php?u=${location.href}`)
+
+            WhatsappShare.setAttribute('href', `https://wa.me/?text=${location.href}` )
+
+        }
+        
+    </script>
+    {% endblock scripts%}
+    
+
+   
+{% endblock content %}

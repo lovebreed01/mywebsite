@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+       {% csrf_token %}
+       <p>
+           <label for="username"> Username</label>
+           <input name="username" autocomplete='off' id="username" type="text">
+       </p>
+       <p>
+           <label for="email"> Email</label>
+           <input name="email" autocomplete='off' id="email" type="email">
+       </p>
+       <p>
+           <label for="password1"> Password</label>
+           <input name="password1" autocomplete='off' id="password1" type="password">
+       </p>
+       <p>
+           <label for="password2">Confirm Password</label>
+           <input name="password2" autosuggest='off' id="password2" type="password">
+       </p>
+       <button type="submit">Sign Up</button>
+   </form>
+</body>
+</html>

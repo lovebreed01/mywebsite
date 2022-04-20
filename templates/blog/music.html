@@ -1,0 +1,34 @@
+
+{% extends 'blog/base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %}
+    Trending songs and musics
+{% endblock title %}
+
+{% block content %}
+
+<div class="allcontainer">
+    <main>
+        
+        <section  class="trending-posts">
+            <h2 class="heading">Top Songs</h2>
+            <div class="posts">
+                {% for post in songs %}
+                <a href="{% url 'music' post.slug %}" class="post">
+                    <img src="{{post.image.url}}"  alt="{{post.title}}">
+                    <p class="title" >{{post.title}}</p>
+                </a>
+                {% endfor %}
+            </div>
+            <a href="#" class="more"> 
+            <button>More<i class="fa fa-arrow-right"></i> </button> 
+            </a>
+        </section>
+        
+    </main>
+</div>
+
+{% endblock content %}
+
+

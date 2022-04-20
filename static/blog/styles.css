@@ -1,0 +1,124 @@
+
+body{
+    background-color: rebeccapurple;
+}
+nav {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 2;
+    position: absolute;
+    /* position: fixed; */
+}
+.hide-menu{
+    transform: translateX(1000px);
+}
+.show-menu{
+    transform: translateX(0);
+}
+nav .navbtn{
+    background-color:var(--alt-color);
+    color: antiquewhite;
+    border: none;
+    font-size: 30px;
+    width: 50px;
+    padding: 5px;
+    cursor: pointer;
+}
+nav .menu{
+    position: fixed;
+    background:var(--primary-clr);
+    width: 70%;
+    right: 0;
+    bottom: 0;
+    transition: all ease-in-out 300ms;
+    height: 100%;
+}
+nav .menu .close{
+    display: flex;
+    justify-content: flex-end;
+}
+nav .menu .close a{
+    color: antiquewhite;
+    font-size: 40px;
+    background-color: var(--alt-color);
+    padding: px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 20px 3px;
+    width: 50px;
+    padding: 2px;
+    text-align: center;
+}
+nav .brand span{
+    font-size: 2em;
+    color: antiquewhite;
+    font-family: var(--def-font);
+}
+nav .brand{
+    width: auto;
+    padding: 5px 50px;
+}
+nav .menu .links{
+    display: flex;
+    flex-direction:column;
+    padding: 20px 5px;
+}
+nav .menu .links .link{
+    list-style:none;
+    
+}
+
+.link ul li{
+    list-style: none;
+    
+}
+.links .link{
+    font-size: 20px;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    color: white;
+    text-transform: uppercase;
+    margin: 15px 10px;
+}
+.link a{
+    text-decoration: none;
+    color: white;
+
+}
+.has-child{
+    margin-bottom: 50px;
+}
+.has-child span{
+    display: flex;
+    align-items: center;
+}
+.show-children{ 
+    opacity: 1;
+    height:auto ;
+}
+.hide-children{
+    opacity: 0;
+    height: 0;
+    background-color: blue;
+    display: none;
+}
+.has-child ul{
+    font-size: 15px;
+    transition: all ease 2ms;
+    margin:10px 20px;
+    font-weight: 300;
+}
+.has-child ul li{
+    margin-bottom: 20px;
+}
+
+.has-child img{
+    color: red;
+    width: 30px;
+    margin-left: 20px;
+    background-color: var(--alt-color);
+}

@@ -61,6 +61,7 @@ def trending(request):
 def music_page(request,slug ):
     music_post  = Music.objects.get(slug=slug)
     comments = MusicComment.objects.filter(post = music_post)
+    related = Music.objects.filter(category=music_post.category).exclude(title=music_post.title).order_by('-posted_on')[:10]
     title= music_post.title
     print(music_post.title)
     print(music_post.uploader)
@@ -84,7 +85,8 @@ def music_page(request,slug ):
         'title': title,
         'music': music_post,
         'comments':comments,
-        'commentform' : comment_form
+        'commentform' : comment_form,
+        'related' : related
     }
     return render(request, 'blog/music_page.html', context)
 

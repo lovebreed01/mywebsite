@@ -47,7 +47,31 @@ Freeloaded | play and download {{music.title }} for free
             </article>
             <a class="download" href="{{music.music_file.url}}" download=""> Download Now</a> 
         </div>
+         <section  class="trending-posts">
+            <h3 class="heading">Related Posts</h3>
+            <div class="posts">
+                {% if related %}
+                {% for post in related %}
+                <a href="{% url 'detail' post.slug %}" class="post">
+                    <img src="{{post.image.url}}"  alt="{{post.title}}">
+                    <p class="title" >{{post.title}}</p>
+                </a>
+                
+                {% endfor %}
+                <a href="{% url 'news' %}" class="more"> 
+            <button>More<i class="fa fa-arrow-right"></i> </button> 
+            </a>
+            {% else %}
+                <h3>No related music</h3>
+                <a href="{% url 'news' %}" class="more"> 
+                 <button>Check more here</button>
+                    </a>
+           
 
+            </div>
+            
+             {% endif %}
+        </section>
        
         <div class="comment-section">
             <h3 class="comment-title">Comment Below 👇 </h3>

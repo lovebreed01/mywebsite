@@ -236,6 +236,7 @@ aside h2,h3{
     font-family: var(--rubik-font);
     height: 100px;
     transition: transform ease-in-out 250ms;
+    padding: 10px;
 }
 .latest .posts .post:hover{
     transform: scale(1.02);
